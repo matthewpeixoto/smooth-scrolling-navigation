@@ -1,0 +1,148 @@
+repo: 'smooth-scrolling-navigation'
+
+naming: true
+restrictFileTypes: true
+liveWebsite: true
+
+git:
+  numCommits: 2
+  allCommitted: true
+  allSynced: true
+
+html:
+  - path: 'index.html'
+    valid: true
+    bestPractices: true
+    outline: true
+    has:
+      - 'script[src*="jquery"]'
+      - 'script[src*="scrollTo"]'
+      - 'script[src*="localScroll"]'
+      - 'script[src="js/main.js"]'
+      - ['script[src*="jquery"] + script[src*="scrollTo"] + script[src*="localScroll"] + script[src="js/main.js"]', 'The order of the Javascript files is really important—it should be: `jqeury`, `scrollTo`, `localScroll` then `main.js`']
+      - 'section[id]'
+    search:
+      - ['a href="#[\w-]+"', 'The `<a>` links in the navigation need to point to IDs on the page']
+
+css:
+  - path: 'css/main.css'
+    locked: true
+
+js:
+  - path: 'js/main.js'
+    valid: true
+    bestPractices: true
+    maxLines: 1
+
+screenshots:
+  - path: 'index.html'
+    sizes: [960]
+
+functionality:
+  - path: 'index.html'
+    label: 'Environment link'
+    tests:
+      - |
+        const theLink = $('nav li:first-child a');
+        const checks = [];
+
+        window.scrollTo(0, 0);
+
+        theLink.dispatchEvent(ev('click'));
+
+        setTimeout(() => {
+          checks.push(window.scrollY);
+        }, 50);
+
+        setTimeout(() => {
+          checks.push(window.scrollY);
+        }, 100);
+
+        setTimeout(() => {
+          checks.push(window.scrollY);
+
+          if (checks[0] == checks[1] && checks[1] == checks[2]) fail('The page doesn’t smoothly scroll when “Environment” is clicked');
+
+          pass();
+        }, 150);
+
+  - path: 'index.html'
+    label: 'Dimensions link'
+    tests:
+      - |
+        const theLink = $('nav li:nth-child(2) a');
+        const checks = [];
+
+        window.scrollTo(0, 0);
+
+        theLink.dispatchEvent(ev('click'));
+
+        setTimeout(() => {
+          checks.push(window.scrollY);
+        }, 50);
+
+        setTimeout(() => {
+          checks.push(window.scrollY);
+        }, 100);
+
+        setTimeout(() => {
+          checks.push(window.scrollY);
+
+          if (checks[0] == checks[1] && checks[1] == checks[2]) fail('The page doesn’t smoothly scroll when “Dimensions” is clicked');
+
+          pass();
+        }, 150);
+
+  - path: 'index.html'
+    label: 'Diet link'
+    tests:
+      - |
+        const theLink = $('nav li:nth-child(3) a');
+        const checks = [];
+
+        window.scrollTo(0, 0);
+
+        theLink.dispatchEvent(ev('click'));
+
+        setTimeout(() => {
+          checks.push(window.scrollY);
+        }, 50);
+
+        setTimeout(() => {
+          checks.push(window.scrollY);
+        }, 100);
+
+        setTimeout(() => {
+          checks.push(window.scrollY);
+
+          if (checks[0] == checks[1] && checks[1] == checks[2]) fail('The page doesn’t smoothly scroll when “Diet” is clicked');
+
+          pass();
+        }, 150);
+
+  - path: 'index.html'
+    label: 'Flight link'
+    tests:
+      - |
+        const theLink = $('nav li:nth-child(4) a');
+        const checks = [];
+
+        window.scrollTo(0, 0);
+
+        theLink.dispatchEvent(ev('click'));
+
+        setTimeout(() => {
+          checks.push(window.scrollY);
+        }, 50);
+
+        setTimeout(() => {
+          checks.push(window.scrollY);
+        }, 100);
+
+        setTimeout(() => {
+          checks.push(window.scrollY);
+
+          if (checks[0] == checks[1] && checks[1] == checks[2]) fail('The page doesn’t smoothly scroll when “Flight” is clicked');
+
+          pass();
+        }, 150);
